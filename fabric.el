@@ -69,8 +69,6 @@
       )))
 
 
-
-
 ;; spacemacs keybinding
 
 (spacemacs/set-leader-keys "aib" 'fabric-run-pattern-on-buffer)
