@@ -1,0 +1,29 @@
+https://github.com/velocitatem/fabric.el
+A Spacemacs package integrates with Fabric AI to enhance workflows with pattern application and retrieval functions.
+
+MAIN POINTS:
+- Retrieves available Fabric patterns with `fabric-get-patterns`.
+- Applies Fabric patterns to buffer content via `fabric-run-pattern-on-buffer`.
+- Allows pattern application to selected regions using `fabric-run-pattern-on-region`.
+
+TAKEAWAYS:
+- Enhances Spacemacs with Fabric AI integration.
+- Simplifies AI pattern application in text editing.
+- Custom keybindings improve workflow efficiency.
+
+EXPLANATION:
+
+This code defines a Spacemacs package that integrates with Fabric, an open-source framework designed to augment human capabilities using AI. It provides functions to interact with Fabric directly from Spacemacs, a community-driven Emacs distribution. The package includes three main functionalities:
+
+1. **fabric-get-patterns**: This function retrieves a list of available patterns from the Fabric framework. It executes a shell command to list all patterns (`fabric --list`), captures the output in a buffer, splits the output into individual patterns, and then deletes the temporary buffer used for capturing the output.
+
+2. **fabric-run-pattern-on-buffer**: This function allows the user to apply a specific Fabric pattern to the entire content of the current buffer. It prompts the user to select a pattern from the list of available patterns (retrieved using `fabric-get-patterns`), reads the entire content of the current buffer, writes this content to a temporary file, and then executes a shell command that pipes the content of the temporary file into Fabric with the selected pattern. After processing, it deletes the temporary file.
+
+3. **fabric-run-pattern-on-region**: Similar to `fabric-run-pattern-on-buffer`, but instead of applying the Fabric pattern to the entire buffer, it applies it only to a selected region within the buffer. It prompts the user for a pattern, reads the content of the specified region, writes this content to a temporary file, and then executes a shell command to process this content with Fabric using the selected pattern. The temporary file is deleted after processing.
+
+Additionally, the package defines keybindings for Spacemacs, allowing users to easily access these functions:
+- `spacemacs/set-leader-keys "aib"` binds `fabric-run-pattern-on-buffer` to a key sequence.
+- `spacemacs/set-leader-keys "aiR"` binds `fabric-run-pattern-on-region` to a key sequence.
+- `spacemacs/set-leader-keys "aiP"` binds `fabric-get-patterns` to a key sequence.
+
+These keybindings make it convenient for users to interact with Fabric directly from their Spacemacs environment, enhancing their workflow by leveraging AI capabilities.
