@@ -44,3 +44,5 @@ Fabric.el is released under the MIT License. For more details, see the [LICENSE]
 ---
 
 Enhance your Spacemacs experience with AI today. Try **Fabric.el** and take your productivity to new heights!
+
+_made with fabric_
