@@ -1,6 +1,9 @@
 # 🚀 Fabric.el - Enhancing Spacemacs with AI 🚀
 
-Welcome to **Fabric.el**, a revolutionary Spacemacs package designed to seamlessly integrate the power of Fabric AI into your Spacemacs environment. Our mission is to supercharge your text editing workflow by simplifying the application of AI-driven patterns directly within your editor.
+![Peek 2024-06-02 14-52](https://github.com/velocitatem/fabric.el/assets/60182044/832660d0-a575-4164-a17e-866d7bd051ee)
+
+
+Welcome to **Fabric.el**, a revolutionary Spacemacs package designed to seamlessly integrate the power of [Fabric AI](https://github.com/danielmiessler/fabric) into your Spacemacs environment. Our mission is to supercharge your text editing workflow by simplifying the application of AI-driven patterns directly within your editor.
 
 ## 🌟 Key Features
 
