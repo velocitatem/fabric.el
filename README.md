@@ -29,9 +29,9 @@ To get started with Fabric.el, follow these simple steps:
 
 Imagine you're working on a large text file and want to apply a specific AI pattern to enhance its content. With Fabric.el, you can simply:
 
-1. Press the keybinding for `fabric-get-patterns` to retrieve and select from available patterns.
+1. Write whatever prompt you want into a buffer or highlight a region you want to send to the LLM.
 2. Use `fabric-run-pattern-on-buffer` to apply the selected pattern to the entire buffer or `fabric-run-pattern-on-region` for a specific section.
-3. Watch as Fabric AI transforms your content, all within your Spacemacs environment.
+3. Watch as Fabric AI transforms your content, all within your Spacemacs environment _in a separate buffer of course_.
 
 ## 🤝 Contributing
 

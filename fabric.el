@@ -47,7 +47,10 @@
 
 (defun fabric-run-pattern-on-region (pattern start end)
   "Run the fabric command on the current region, shell command works like echo $STRING | fabric --pattern {pattern}' which returns the output of the command"
-  (interactive "sPattern: \nr")
+  (interactive (list (completing-read "Pattern: " (fabric-get-patterns)
+                                     nil t)
+                     (region-beginning)
+                     (region-end)))
   ;; get the current buffer
   (message "Running fabric on region %s" (current-buffer))
   (message "Pattern: %s" pattern)
