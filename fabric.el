@@ -34,15 +34,29 @@
 (provide 'fabric)
 
 
+(defvar fabric-pattern-cache nil
+  "Cache for storing fabric patterns.")
+
 (defun fabric-get-patterns ()
-  "Get the list of patterns from the fabric command"
+  "Get the list of patterns from the fabric command, using a cache."
   (interactive)
-  (message "Getting patterns")
-  (shell-command "/mnt/s/.local/bin/fabric --list" "*fabric-patterns*")
-  (let ((patterns (with-current-buffer "*fabric-patterns*"
-                    (split-string (buffer-string) "\n" t))))
-    (kill-buffer "*fabric-patterns*")
-    patterns))
+  (if fabric-pattern-cache
+      (progn
+        (message "Using cached patterns")
+        fabric-pattern-cache)
+    (message "Getting patterns")
+    (shell-command "/mnt/s/.local/bin/fabric --list" "*fabric-patterns*")
+    (let ((patterns (with-current-buffer "*fabric-patterns*"
+                      (split-string (buffer-string) "\n" t))))
+      (kill-buffer "*fabric-patterns*")
+      (setq fabric-pattern-cache patterns)
+      patterns)))
+
+(defun fabric-clear-pattern-cache ()
+  "Clear the cache for fabric patterns."
+  (interactive)
+  (setq fabric-pattern-cache nil)
+  (message "Fabric pattern cache cleared"))
 
 (defun fabric-list-patterns ()
   "List the patterns from the fabric command"
@@ -99,6 +113,9 @@
         (shell-command (format "cat %s | /mnt/s/.local/bin/fabric --pattern %s &" temp-file pattern) "*fabric-output*")
         (delete-file temp-file))
       )))
+
+
+
 
 
 ;; spacemacs keybinding
