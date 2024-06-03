@@ -69,10 +69,20 @@
     (pop-to-buffer "*fabric-patterns*")))
 
 
+(define-derived-mode fabric-mode markdown-mode "Fabric"
+  "Major mode for fabric output"
+  ;; make it editable
+  (read-only-mode -1)
+  (markdown-mode))
+
+
+
 (defun fabric-run-pattern-on-buffer (pattern)
   "Run the fabric command on the current buffer, shell command works like echo $STRING | fabric --pattern {pattern}' which returns the output of the command"
-  ;; let the user select the pattern
-  (interactive (list (completing-read "Pattern: " (fabric-get-patterns))))
+  ;; let the user select the pattern or run without a pattern optionally
+  (interactive (list (completing-read "Pattern"
+                                      (append (fabric-get-patterns) '("NONE"))
+                                      nil t)))
 
   ;; get the current buffer
   (message "Running fabric on buffer %s" (current-buffer))
@@ -87,13 +97,18 @@
       (let ((temp-file (make-temp-file "fabric" nil ".txt")))
         (message "Temp file: %s" temp-file)
         (write-region content nil temp-file)
-        (shell-command (format "cat %s | /mnt/s/.local/bin/fabric -s --pattern %s &" temp-file pattern) "*fabric-output*")
-        (delete-file temp-file))
+        ;; check if pattern is nil
+        (if (string= pattern "NONE")
+            (shell-command (format "cat %s | /mnt/s/.local/bin/fabric -s &" temp-file) "*fabric-output*")
+          (shell-command (format "cat %s | /mnt/s/.local/bin/fabric -s --pattern %s &" temp-file pattern) "*fabric-output*"))
+        (delete-file temp-file)
+        )
       )))
+
 
 (defun fabric-run-pattern-on-region (pattern start end)
   "Run the fabric command on the current region, shell command works like echo $STRING | fabric --pattern {pattern}' which returns the output of the command"
-  (interactive (list (completing-read "Pattern: " (fabric-get-patterns)
+  (interactive (list (completing-read "Pattern: " (append (fabric-get-patterns) '("NONE"))
                                      nil t)
                      (region-beginning)
                      (region-end)))
@@ -110,18 +125,19 @@
       (let ((temp-file (make-temp-file "fabric" nil ".txt")))
         (message "Temp file: %s" temp-file)
         (write-region content nil temp-file)
-        (shell-command (format "cat %s | /mnt/s/.local/bin/fabric --pattern %s &" temp-file pattern) "*fabric-output*")
+        ;; check if pattern is nil
+        (if (string= pattern "NONE")
+            (shell-command (format "cat %s | /mnt/s/.local/bin/fabric -s &" temp-file ) "*fabric-output*")
+          (shell-command (format "cat %s | /mnt/s/.local/bin/fabric -s --pattern %s &" temp-file pattern) "*fabric-output*")
+          )
         (delete-file temp-file))
       )))
-
-
-
-
 
 ;; spacemacs keybinding
 
 (spacemacs/set-leader-keys "aib" 'fabric-run-pattern-on-buffer)
 (spacemacs/set-leader-keys "aiR" 'fabric-run-pattern-on-region)
 (spacemacs/set-leader-keys "aiP" 'fabric-get-patterns)
+;; suggest other keybindings
 
 ;;; fabric.el ends here
