@@ -3,7 +3,7 @@
 ![Peek 2024-06-02 14-52](https://github.com/velocitatem/fabric.el/assets/60182044/832660d0-a575-4164-a17e-866d7bd051ee)
 
 
-Welcome to **Fabric.el**, a revolutionary Spacemacs package designed to seamlessly integrate the power of [Fabric AI](https://github.com/danielmiessler/fabric) into your Spacemacs environment. Our mission is to supercharge your text editing workflow by simplifying the application of AI-driven patterns directly within your editor.
+Welcome to **Fabric.el**, a wrapper around [Fabric AI](https://github.com/danielmiessler/fabric) into your Spacemacs environment. Supercharge your text editing workflow by simplifying the application of AI-driven patterns directly within your editor.
 
 ## 🌟 Key Features
 
@@ -36,10 +36,6 @@ Imagine you're working on a large text file and want to apply a specific AI patt
 ## 🤝 Contributing
 
 We welcome contributions from everyone! If you're interested in improving Fabric.el or adding new features, please fork the repository, make your changes, and submit a pull request. Let's make Fabric.el even better together!
-
-## 📜 License
-
-Fabric.el is released under the MIT License. For more details, see the [LICENSE](LICENSE.md) file included in this repository.
 
 ---
 

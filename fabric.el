@@ -80,7 +80,7 @@
 (defun fabric-run-pattern-on-buffer (pattern)
   "Run the fabric command on the current buffer, shell command works like echo $STRING | fabric --pattern {pattern}' which returns the output of the command"
   ;; let the user select the pattern or run without a pattern optionally
-  (interactive (list (completing-read "Pattern"
+  (interactive (list (completing-read "Pattern: "
                                       (append (fabric-get-patterns) '("NONE"))
                                       nil t)))
 
