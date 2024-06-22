@@ -135,9 +135,19 @@
 
 ;; spacemacs keybinding
 
+;; function to take contents of clipboard and make a new buffer with those contents
+(defun fabric-clipboard-to-buffer ()
+  "Create a new buffer with the contents of the clipboard."
+  (interactive)
+  (let ((content (current-kill 0)))
+    (with-current-buffer (generate-new-buffer "fabric-clipboard")
+      (insert content)
+      (fabric-mode)
+      (pop-to-buffer (current-buffer)))))
 (spacemacs/set-leader-keys "aib" 'fabric-run-pattern-on-buffer)
 (spacemacs/set-leader-keys "aiR" 'fabric-run-pattern-on-region)
 (spacemacs/set-leader-keys "aiP" 'fabric-get-patterns)
+(spacemacs/set-leader-keys "aic" 'fabric-clipboard-to-buffer)
 ;; suggest other keybindings
 
 ;;; fabric.el ends here
